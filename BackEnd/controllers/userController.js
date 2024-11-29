@@ -1,5 +1,5 @@
 const User = require("../models/userModel");
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Doctor = require("../models/doctorModel");
 const Appointment = require("../models/appointmentModel");
@@ -30,7 +30,7 @@ const login = async (req, res) => {
     if (!emailPresent) {
       return res.status(400).send("Incorrect credentials");
     }
-    const verifyPass = await bcrypt.compare(
+    const verifyPass = await bcryptjs.compare(
       req.body.password,
       emailPresent.password
     );
@@ -56,7 +56,7 @@ const register = async (req, res) => {
     if (emailPresent) {
       return res.status(400).send("Email already exists");
     }
-    const hashedPass = await bcrypt.hash(req.body.password, 10);
+    const hashedPass = await bcryptjs.hash(req.body.password, 10);
     const user = await User({ ...req.body, password: hashedPass });
     const result = await user.save();
     if (!result) {
@@ -70,7 +70,7 @@ const register = async (req, res) => {
 
 const updateprofile = async (req, res) => {
   try {
-    const hashedPass = await bcrypt.hash(req.body.password, 10);
+    const hashedPass = await bcryptjs.hash(req.body.password, 10);
     const result = await User.findByIdAndUpdate(
       { _id: req.locals },
       { ...req.body, password: hashedPass }
