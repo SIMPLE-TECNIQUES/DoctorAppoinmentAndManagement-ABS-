@@ -13,6 +13,14 @@ const getuser = async (req, res) => {
   }
 };
 
+const adminExist= async (req,res) => {
+  try{
+    const isAdmin= await User.findOne({isAdmin:true});
+    res.status(200).json({isAdmin:!!isAdmin});
+  }catch{
+    res.status(200).json({error:"No presence of admin"});
+  }
+};
 const getallusers = async (req, res) => {
   try {
     const users = await User.find()
@@ -106,4 +114,5 @@ module.exports = {
   register,
   updateprofile,
   deleteuser,
+  adminExist
 };
