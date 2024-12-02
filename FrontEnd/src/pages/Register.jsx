@@ -155,7 +155,7 @@ function Register() {
             onChange={inputChange}
           >
             <option value="public">Doctor || User</option>
-            <option value="admin">Admin</option>
+            {/* <option value="admin">Admin</option> */}
           </select>
           <button
             type="submit"
