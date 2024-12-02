@@ -15,8 +15,8 @@ const getuser = async (req, res) => {
 
 const adminExist= async (req,res) => {
   try{
-    const isAdmin= await User.findOne({isAdmin:true});
-    res.status(200).json({isAdmin:!!isAdmin});
+    const checkAdmin= await User.findOne({isAdmin:true});
+    res.status(200).json({checkAdmin:!!checkAdmin});
   }catch{
     res.status(200).json({error:"No presence of admin"});
   }
