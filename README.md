@@ -1,4 +1,4 @@
-Admin 
+Admin can be registered only once , if application is cloned new .
 email:siva@gmail.com
 password:12345678
 
