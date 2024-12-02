@@ -6,7 +6,7 @@ Admin can be registered only once , if application is cloned new .
   
   **Server**:https://doctorappoinmentandmanagement-abs.onrender.com
 
-  **UI**:
+  **UI**:https://symphonious-squirrel-d4be30.netlify.app/
 
 **Project Name:** Doctor Appointment Application with RBAC
 
