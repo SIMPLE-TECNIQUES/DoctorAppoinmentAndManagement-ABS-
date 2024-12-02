@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/register.css";
 import axios from "axios";
@@ -6,6 +6,9 @@ import toast from "react-hot-toast";
 
 axios.defaults.baseURL =import.meta.env.VITE_SERVER_DOMAIN;
 console.log(import.meta.env.VITE_SERVER_DOMAIN);
+
+
+
 
 function Register() {
   const [file, setFile] = useState("");
@@ -18,7 +21,25 @@ function Register() {
     confpassword: "",
     isAdmin: "public", // default value for isAdmin
   });
+  const [admin,setAdmin]=useState(false);
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    const funcAdmin =async(req,res)=>{
+      const response=await axios.get("user/isAdmin");
+
+      console.log(response.data.checkAdmin);
+      
+      if(response.data.checkAdmin){
+        setAdmin(true);
+      }else{
+        toast.error("No admin present ");
+      }
+  
+    }
+  
+    funcAdmin();
+  },[]);
 
   const inputChange = (e) => {
     const { name, value } = e.target;
@@ -148,15 +169,30 @@ function Register() {
             value={formDetails.confpassword}
             onChange={inputChange}
           />
-          <select
+           {admin?( <select
             name="isAdmin"
             className="form-input"
             value={formDetails.isAdmin}
             onChange={inputChange}
           >
             <option value="public">Doctor || User</option>
-            {/* <option value="admin">Admin</option> */}
-          </select>
+            <option value="NAN">Admin already present</option>
+           
+           
+           
+          </select>):( <select
+            name="isAdmin"
+            className="form-input"
+            value={formDetails.isAdmin}
+            onChange={inputChange}
+          >
+            <option value="public">Doctor || User</option>
+            <option value="admin">Admin</option>
+            
+           
+           
+          </select>)}
+         
           <button
             type="submit"
             className="btn form-btn"
