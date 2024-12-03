@@ -1,6 +1,12 @@
-Admin 
-email:siva@gmail.com
-password:12345678
+Admin can be registered only once , if application is cloned new .
+
+**Admin**:
+- email:siva@gmail.com
+- password:12345678
+  
+**Server**:https://doctorappoinmentandmanagement-abs.onrender.com
+
+**UI**:https://symphonious-squirrel-d4be30.netlify.app/
 
 **Project Name:** Doctor Appointment Application with RBAC
 
